@@ -1,0 +1,95 @@
+Сброс стилей для всех элементов *,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Обнуляем стандартные стили у ссылок и списков */
+a {
+    text-decoration: none;
+    color: inherit;
+    /* Чтобы ссылки наследовали цвет текста */
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Убираем фокусные контуры по умолчанию у всех элементов */
+:focus {
+    outline: none;
+}
+
+/* Основной шрифт */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Стандартные настройки для заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Стандартные настройки для абзацев */
+p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Устанавливаем максимальную ширину для контейнера */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Основные настройки для кнопок */
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Основной стиль для форм */
+input,
+textarea,
+select {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+}

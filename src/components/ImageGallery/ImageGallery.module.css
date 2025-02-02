@@ -1,0 +1,10 @@
+.section{
+    margin-top: 60px;
+    margin-left: 120px ;
+}
+
+.ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

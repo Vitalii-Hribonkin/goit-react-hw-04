@@ -1,0 +1,17 @@
+.header{
+background-color: gray;
+}
+
+.input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+    margin-left: 670px;
+    padding: 16px;
+    
+}
+
+.btn{
+    margin-left: 24px;
+    height: 44px;
+}
