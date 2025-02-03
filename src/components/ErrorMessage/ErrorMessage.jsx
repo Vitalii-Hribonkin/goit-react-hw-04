@@ -1,8 +1,7 @@
 
 
-const ErrorMessage = () => {
-    return (
-        <p>Not found photos</p>
-    )
-}
-export default ErrorMessage
+const ErrorMessage = ({ message }) => {
+  return <p>{message}</p>;
+};
+
+export default ErrorMessage;

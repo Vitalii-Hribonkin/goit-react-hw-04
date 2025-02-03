@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoaderMoreBtn";
 import Loader from "./components/Loader/Loader";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage"; 
 import './index.css';
 
 function App() {
@@ -12,12 +13,14 @@ function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // <-- `error` використовується далі в коді
 
   const API_KEY = "mxybG2LLL9L4L_yfIJ5LbJfWXfJYsDGq11HuVcpWOpo";
 
-  // Fetch images from Unsplash API
   const fetchImages = async (searchQuery, pageNum = 1, perPage = 16) => {
     setLoading(true);
+    setError(null); // Скидаємо помилки перед новим запитом
+
     try {
       const response = await axios.get("https://api.unsplash.com/search/photos", {
         params: {
@@ -29,20 +32,19 @@ function App() {
       });
 
       if (response.data.results.length === 0) {
-        toast.error("No photos found for this query.");
+        setError("No photos found for this query.");
         return;
       }
 
       setImages((prevImages) => (pageNum === 1 ? response.data.results : [...prevImages, ...response.data.results]));
-    } catch (error) {
-      toast.error("Error fetching images! Try again.");
-      console.error("Error fetching images:", error);
+    } catch (error) { 
+      setError("Error fetching images! Try again.");
+      toast.error("Error fetching images!");
     } finally {
       setLoading(false);
     }
   };
 
-  // Handle search query input and update the state
   const handleSearch = (searchQuery) => {
     if (!searchQuery.trim()) {
       toast.error("Search query cannot be empty!");
@@ -51,11 +53,10 @@ function App() {
 
     setQuery(searchQuery);
     setPage(1);
-    setImages([]); // Очищаем старые изображения перед новым поиском
+    setImages([]);
     fetchImages(searchQuery, 1);
   };
 
-  // Load more images when user clicks the button
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
@@ -66,6 +67,7 @@ function App() {
     <>
       <Toaster position="top-right" reverseOrder={false} />
       <SearchBar onSearch={handleSearch} />
+      {error && <ErrorMessage message={error} />} 
       <ImageGallery images={images} />
       {loading && <Loader />}
       {images.length > 0 && !loading && <LoadMoreBtn onLoadMore={handleLoadMore} />}
