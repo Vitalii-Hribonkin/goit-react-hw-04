@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ images, onImageClick }) => {
+const ImageGallery = ({ images, onImageClick }) => {  // <-- Додаємо onImageClick
   if (!images || images.length === 0) return <p>Start searching</p>;
 
   return (
@@ -9,7 +9,7 @@ const ImageGallery = ({ images, onImageClick }) => {
       <ul className={s.ul}>
         {images.map((image) => (
           <li key={image.id} className={s.li}>
-            <ImageCard image={image} onClick={onImageClick} />
+            <ImageCard image={image} onClick={onImageClick} /> {/* <-- Передаємо onClick */}
           </li>
         ))}
       </ul>
